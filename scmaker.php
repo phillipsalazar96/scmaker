@@ -65,6 +65,7 @@ class SCMaker
   }
 
 }
+  $scmaker = new SCMaker();
 
 // adds the table
 function scmaker_install()
@@ -80,6 +81,8 @@ function scmaker_install()
              id mediumint(9) NOT NULL AUTO_INCREMENT,
              name TINYTEXT NOT NULL,
              content  TEXT NOT NULL,
+             type VARCHAR(50) NOT NULL,
+             attributes TEXT,
              PRIMARY KEY  (id)
              ) $charset_collate;";
 
@@ -99,11 +102,12 @@ function scmaker_uninstall()
 
 function addingAction()
 {
-
-      add_menu_page( 'scmaker', 'Short Code Maker', 'manage_options', 'test-plugin', 'start_init' );
-      add_action('admin_init', 'custom_setting');
-
+  add_menu_page('scmaker', 'Shortcode Maker', 'manage_options', 'shortcode-maker', 'start_init');
+  add_submenu_page( 'shortcode-maker', 'Add Shortcode', 'Add Shortcode', 'manage_options', 'shortcode-maker-add', 'start_init');
+  add_submenu_page( 'shortcode-maker', 'Change Shortcode', 'Change Shortcode','manage_options', 'shortcode-maker-change', 'start_init');
+  add_action('admin_submenu', 'scmaker_submenu');
 }
+
 
 function scmaker_style()
 {
@@ -114,17 +118,50 @@ function scmaker_style()
 function start_init()
 {
       $scmaker = new SCMaker();
-      include 'panel.php';
+      $url = $_SERVER['REQUEST_URI'];
+      $parsed = parse_url($url);
+      $query = $parsed['query'];
+
+      parse_str($query, $params);
+
+      unset($params['page_number']);
+      $string = http_build_query($params);
+      $stuff = explode( '=', $string);
+
+      // add a switch
+      if ($stuff[1] == 'shortcode-maker')
+      {
+            include 'panel.php';
+      }
+      else if ($stuff[1] == 'shortcode-maker-add')
+      {
+          include 'scmaker_add.php';
+      }
+      else if ($stuff[1] == 'shortcode-maker-change')
+      {
+              include 'scmaker_change.php';
+      }
+
 
 }
 
-function scmaker_create($content)
+
+// have atributes
+function scmaker_create($atts, $content = null)
 {
-  return $content;
+  global $wpdb;
+  $a = shortcode_atts( array(
+		'type' => 'text',
+	), $atts );
+
+
+  $row = $wpdb->get_row( "SELECT * FROM wp_scmaker WHERE name='$content' LIMIT 1" );
+  return  $row->content . ' type is ' . $a['type'] ;
+
 }
 
 register_activation_hook( __FILE__, 'scmaker_install' );
-//register_deactivation_hook(__FILE__, 'on_deactivation');
+//register_deactivation_hook(__FILE__, 'scmaker_uninstall');
 register_uninstall_hook(__FILE__, 'scamker_uninstall');
 
 add_shortcode('addcode', 'scmaker_create');
