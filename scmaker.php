@@ -111,9 +111,12 @@ function addingAction()
 
 function scmaker_style()
 {
+  wp_enqueue_script( 'scmaker_script', plugins_url('/assets/function.js', __FILE__), array ( 'jquery' ), 1.1, true);
       wp_register_style('scmaker_style', plugins_url('/assets/style.css',__FILE__ ));
       wp_enqueue_style('scmaker_style');
 }
+
+//get_template_directory_uri() . '/assets/function.js'
 
 function start_init()
 {

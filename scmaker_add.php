@@ -21,6 +21,19 @@ else if (!empty($_POST['name_update']) && !empty($_POST['content_update']))
 
 
  ?>
+ <h3>Make a Shortcode!</h3>
+ <select name="update" onchange="FormSelecting()">
+   <option value="Text">Text</option>
+   <option value="Image">image</option>
+   <option value="Link">Link</option>
+   <option value="code">code</option>
+   <option value="Link">Label</option>
+   <option value="Button">Button</option>
+   <option value="bar">Bar</option>
+   <option value="video">video</option>
+   <option value="audio">audio</option>
+</select>
+
 <div class="input-box">
 <form method="post" action="">
     <h4>Add short code</h4>
@@ -28,17 +41,7 @@ else if (!empty($_POST['name_update']) && !empty($_POST['content_update']))
     <input type="text" name="name" />
     <label>Content</label>
     <input type="text" name="content" />
-    <select name="update" onchange="FormSelecting()">
-      <option value="Text">Text</option>
-      <option value="Image">image</option>
-      <option value="Link">Link</option>
-      <option value="code">code</option>
-      <option value="Link">Label</option>
-      <option value="Button">Button</option>
-      <option value="bar">Bar</option>
-      <option value="video">video</option>
-      <option value="audio">audio</option>
-  </select>
+
   <br/>
  <?php submit_button('Add shortcode') ?>
 
