@@ -1,5 +1,5 @@
 // es5
-
+const addformclass = "add_shortcode_boxes";
 function scmakerSelection()
 {
   var selector = document.getElementById('selecttype');
@@ -7,43 +7,31 @@ function scmakerSelection()
   var value = selector[selector.selectedIndex].value;
 
   // the onchange event
-  allToHidden('exp');
+  allToHidden(addformclass);
   switch(value)
   {
       case 'text':
-      changeViewing('text','exp')
+      changeViewing('text',addformclass)
       break;
 
       case 'image':
-      changeViewing('image','exp')
+      changeViewing('image',addformclass)
       break;
 
       case 'link':
-      changeViewing('link','exp')
-      break;
-
-      case 'label':
-      changeViewing('label','exp')
-      break;
-
-      case 'button':
-      changeViewing('button','exp')
-      break;
-
-      case 'bar':
-      changeViewing('bar','exp')
+      changeViewing('link',addformclass)
       break;
 
       case 'video':
-      changeViewing('video','exp')
+      changeViewing('video',addformclass)
       break;
 
       case 'audio':
-      changeViewing('audio','exp')
+      changeViewing('audio',addformclass)
       break;
 
       default:
-      allToHidden('exp');
+      allToHidden(addformclass);
     }
 
 
@@ -56,7 +44,7 @@ function allToHidden(eleclass)
   for (var i = 0; i < len; i++)
   {
     classes[i].style.display = "none";
-    break;
+
   }
 
 }
@@ -66,7 +54,7 @@ function changeViewing(type,eleclass)
 {
   var classes = document.getElementsByClassName(eleclass);
   var len = classes.length;
-
+  allToHidden(addformclass);
   for (var i = 0; i < len; i++)
   {
     if (classes[i].getAttribute("name") == type)
@@ -79,4 +67,4 @@ function changeViewing(type,eleclass)
 
 }
 
-allToHidden('exp');
+allToHidden(addformclass);

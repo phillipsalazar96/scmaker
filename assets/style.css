@@ -87,3 +87,7 @@ margin-right: auto;
     margin-top: 0px;
   }
 }
+
+.add_shortcode_boxes {
+  display: none;
+}

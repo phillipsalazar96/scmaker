@@ -27,33 +27,64 @@ else if (!empty($_POST['name_update']) && !empty($_POST['content_update']))
    <option value="text">Text</option>
    <option value="image">image</option>
    <option value="link">Link</option>
-   <option value="label">Label</option>
-   <option value="button">Button</option>
-   <option value="bar">Bar</option>
    <option value="video">video</option>
    <option value="audio">audio</option>
 </select>
-<!--
-<div class="input-box">
-<form method="post" action="">
-    <h4>Add short code</h4>
-    <label>Shortcode</label>
-    <input type="text" name="name" />
-    <label>Content</label>
-    <input type="text" name="content" />
 
-  <br/>
- <?php// submit_button('Add shortcode') ?>
 
+<div id="t1" class="add_shortcode_boxes" name="text">
+<form>
+<h4>Shortcode: Text</h4>
+<input type="text" name="sc-name" placeholder="Shortcode name">
+<input type="text" name="sc-content" placeholder="Content...">
+<?php submit_button("Add Shortcode") ?>
 </form>
--->
+</div>
+<div id="t2" class="add_shortcode_boxes" name="image">
+  <form>
+  <h4>Shortcode: Image</h4>
+  <input type="text" name="scname" placeholder="Shortcode name">
+  <br/>
+  <input type="text" name="sc-source" placeholder="Source...">
+  <br/>
+  <input type="text" name="sc-alt" placeholder="Alternate text...">
+  <br/>
+  <input type="number" name="sc-height">
+  <br/>
+  <input type="number" name="sc-width">
+  <?php submit_button("Add Shortcode") ?>
+  </form>
+</div>
+<div id="t3" class="add_shortcode_boxes" name="link">
+  <form>
+  <h4>Shortcode: Link</h4>
+  <input type="text" name="sc-name" placeholder="Shortcode name">
+  <br/>
+  <input type="text" name="sc-content" placeholder="Content...">
+  <br/>
+  <input type="text" name="sc-url" placeholder="Url...">
+  <?php submit_button("Add Shortcode") ?>
+  </form>
 
-<div id="t1" class="exp" name="text">text 1</div>
-<div id="t2" class="exp" name="image">text 2</div>
-<div id="t3" class="exp" name="link">text 3</div>
-<div id="t4" class="exp" name="label">text 4</div>
-<div id="t5" class="exp" name="button">text 5</div>
-<div id="t6" class="exp" name="bar">text 6</div>
-<div id="t7" class="exp" name="video">text 7</div>
-<div id="t8" class="exp" name="audio">text 8</div>
+</div>
+<div id="t4" class="add_shortcode_boxes" name="video">
+  <form enctype="multipart/form-data">
+  <h4>Shortcode: Text</h4>
+  <input type="text" name="sc-name" placeholder="Shortcode name">
+  <input type="text" name="sc-content" placeholder="Content...">
+      <input type="file" name="fileToUpload" id="fileToUpload">
+  <?php submit_button("Add Shortcode") ?>
+  </form>
+</div>
+
+<div id="t5" class="add_shortcode_boxes" name="audio">
+  <form enctype="multipart/form-data">
+  <h4>Shortcode: Text</h4>
+  <input type="text" name="sc-name" placeholder="Shortcode name">
+  <input type="text" name="sc-content" placeholder="Content...">
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <?php submit_button("Add Shortcode") ?>
+  </form>
+</div>
+
 </div>
