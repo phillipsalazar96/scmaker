@@ -34,14 +34,13 @@ else if (!empty($_POST['name_update']) && !empty($_POST['content_update']))
 
 ?>
 <div class="input-box">
-  <form method="post" action="">
-
+<!--  <form method="post" action=""> -->
       <h4>Update Shortcode</h4>
       <label>Shortcode</label>
       <input type="text" name="name_update" />
       <label>Content</label>
       <input type="text" name="content_update" />
-      <select name="update">
+      <select id="selecttype" name="update" onchange="scmakerSelection()">
         <option value="default">Default</option>
         <?php $stuff = $scmaker->read_DB(); ?>
         <?php foreach ($stuff as $row): ?>

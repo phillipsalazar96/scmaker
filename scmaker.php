@@ -116,7 +116,7 @@ function scmaker_style()
       wp_enqueue_style('scmaker_style');
 }
 
-//get_template_directory_uri() . '/assets/function.js'
+
 
 function start_init()
 {
